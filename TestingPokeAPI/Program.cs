@@ -549,38 +549,45 @@ namespace TestingGet
 
                                 foreach (var doubleDamageFrom in pokemonData2.damage_relations.double_damage_from)
                                 {
+                                    //Console.WriteLine("Double Damage From: "); 
+                                    //Console.WriteLine({doubleDamageFrom.name});
                                     Console.WriteLine($"Double Damage From: {doubleDamageFrom.name}");
                                 }
 
                                 foreach (var halfDamageFrom in pokemonData2.damage_relations.half_damage_from)
                                 {
+                                    //Console.WriteLine("Half Damage From "); 
+                                    //Console.WriteLine({halfDamageFrom.name});
                                     Console.WriteLine($"Half Damage From: {halfDamageFrom.name}");
                                 }
 
                                 foreach (var noDamageFrom in pokemonData2.damage_relations.no_damage_from)
                                 {
+
+                                    //Console.WriteLine("No Damage From: ");
+                                    //Console.WriteLine({noDamageFrom.name});
                                     Console.WriteLine($"No Damage From: {noDamageFrom.name}");
                                 }
 
                                 foreach (var noDamageTo in pokemonData2.damage_relations.no_damage_to)
                                 {
+                                    //Console.WriteLine("No Damage To: ")
+                                    //Console.WriteLine({noDamageTo.name});
                                     Console.WriteLine($"No Damage To: {noDamageTo.name}");
                                 }
 
                                 foreach (var halfDamageTo in pokemonData2.damage_relations.half_damage_to)
                                 {
+                                    //Console.WriteLine("Half Damage To: ");
+                                    //Console.WriteLine({halfDamageTo.name});
                                     Console.WriteLine($"Half Damage To: {halfDamageTo.name}");
                                 }
 
                                 foreach (var doubleDamageTo in pokemonData2.damage_relations.double_damage_to)
                                 {
+                                    //Console.WriteLine("Double Damage To: ");
+                                    //Console.WriteLine({doubleDamageTo.name});
                                     Console.WriteLine($"Double Damage To: {doubleDamageTo.name}");
-
-
-
-
-
-
                                 }
 
 
@@ -592,6 +599,10 @@ namespace TestingGet
 
 
                 }
+                //else 
+                {
+                    //Console.WriteLine("That's not a Pokemon")
+                } 
             }
         }
     }
