@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using TestingGet;
-
+using System.ComponentModel.Design;
 
 namespace TestingGet
 {
@@ -507,7 +507,7 @@ namespace TestingGet
             using (HttpClient client = new HttpClient())
             {
 
-                Console.WriteLine("Calling WebAPI...");
+                //Console.WriteLine("Calling WebAPI...");
                 var responseTask1 = client.GetAsync($"https://pokeapi.co/api/v2/pokemon/{name}/");
                 responseTask1.Wait();
 
@@ -519,8 +519,9 @@ namespace TestingGet
 
                         string JsonResult = await result1.Content.ReadAsStringAsync();
                         var pokemonData1 = JsonConvert.DeserializeObject<TestingGet.PokeAPI>(JsonResult);
+                    
 
-                        Console.WriteLine($"Pokemon ID: {pokemonData1.id}");
+                        //Console.WriteLine($"Pokemon ID: {pokemonData1.id}");
 
                         //next 3 lines are for abilities and shows in a list. Use 'foreach'
                         //Console.WriteLine("Abilities: ");
@@ -535,7 +536,7 @@ namespace TestingGet
                         {
                             int firstApiId = pokemonData1.id;
 
-                            Console.WriteLine("Calling WebAPI 2...");
+                            //Console.WriteLine("Calling WebAPI 2...");
                             var responseTask2 = await client.GetAsync($"https://pokeapi.co/api/v2/type/{firstApiId}/");
 
                             if (responseTask2.IsSuccessStatusCode)
@@ -544,49 +545,42 @@ namespace TestingGet
 
                                 TestingGet.PokeAPI2 pokemonData2 = JsonConvert.DeserializeObject<TestingGet.PokeAPI2>(JsonResult2);
 
-                                Console.WriteLine("Data from WebAPI 2:");
-                                Console.WriteLine($"Type ID: {pokemonData2.id}");
+
 
                                 foreach (var doubleDamageFrom in pokemonData2.damage_relations.double_damage_from)
                                 {
-                                    //Console.WriteLine("Double Damage From: "); 
-                                    //Console.WriteLine({doubleDamageFrom.name});
+
                                     Console.WriteLine($"Double Damage From: {doubleDamageFrom.name}");
                                 }
 
                                 foreach (var halfDamageFrom in pokemonData2.damage_relations.half_damage_from)
                                 {
-                                    //Console.WriteLine("Half Damage From "); 
-                                    //Console.WriteLine({halfDamageFrom.name});
+
                                     Console.WriteLine($"Half Damage From: {halfDamageFrom.name}");
                                 }
 
                                 foreach (var noDamageFrom in pokemonData2.damage_relations.no_damage_from)
                                 {
 
-                                    //Console.WriteLine("No Damage From: ");
-                                    //Console.WriteLine({noDamageFrom.name});
+
                                     Console.WriteLine($"No Damage From: {noDamageFrom.name}");
                                 }
 
                                 foreach (var noDamageTo in pokemonData2.damage_relations.no_damage_to)
                                 {
-                                    //Console.WriteLine("No Damage To: ")
-                                    //Console.WriteLine({noDamageTo.name});
+
                                     Console.WriteLine($"No Damage To: {noDamageTo.name}");
                                 }
 
                                 foreach (var halfDamageTo in pokemonData2.damage_relations.half_damage_to)
                                 {
-                                    //Console.WriteLine("Half Damage To: ");
-                                    //Console.WriteLine({halfDamageTo.name});
+
                                     Console.WriteLine($"Half Damage To: {halfDamageTo.name}");
                                 }
 
                                 foreach (var doubleDamageTo in pokemonData2.damage_relations.double_damage_to)
                                 {
-                                    //Console.WriteLine("Double Damage To: ");
-                                    //Console.WriteLine({doubleDamageTo.name});
+
                                     Console.WriteLine($"Double Damage To: {doubleDamageTo.name}");
                                 }
 
@@ -596,13 +590,13 @@ namespace TestingGet
 
                         }
                     }
-
+                    else
+                    {
+                        Console.WriteLine("That's not a Pokemon");
+                        return;
+                    }
 
                 }
-                //else 
-                {
-                    //Console.WriteLine("That's not a Pokemon")
-                } 
             }
         }
     }
